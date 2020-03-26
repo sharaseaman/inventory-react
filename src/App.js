@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './components/layouts/Navbar.js';
+import UserItem from './components/rooms/RoomItem.js';
 import './App.css';
 
 //FUNCTIONAL COMPONENT
@@ -60,8 +61,7 @@ class App extends Component {
     return (
       <div className="App">
         < Navbar />
-        <h1>Shara says Hello World</h1>
-          <p className="text-uppercase">Bootstrap is working, all uppercase</p>
+        < UserItem />   
       </div>
     )
   }
