@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Navbar from './components/layouts/Navbar.js';
-import UserItem from './components/rooms/RoomItem.js';
+import Navbar from './components/layouts/Navbar';
+import Rooms from './components/rooms/Rooms';
+import axios from 'axios';
 import './App.css';
 
 //FUNCTIONAL COMPONENT
@@ -57,11 +58,28 @@ import './App.css';
 //  );
 
 class App extends Component {
+  state = {
+    rooms: [],
+    loading: false
+  }
+
+ async componentDidMount () {
+
+ 	this.setState({ loading: true });
+
+	const res = await axios.get('http://inventory.test/api/rooms')
+	
+	this.setState({ rooms: res.data, loading: false });
+  }
+
+  
   render(){
     return (
       <div className="App">
-        < Navbar />
-        < UserItem />   
+        < Navbar /> 
+        <div className="container">
+        <Rooms loading={this.state.loading} rooms={this.state.rooms} /> 
+        </div>
       </div>
     )
   }
